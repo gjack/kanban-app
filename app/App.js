@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import KanbanBoardContainer from './KanbanBoardContainer';
+import KanbanBoardContainer from './components/KanbanBoardContainer';
 import {render} from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
-import KanbanBoard from './KanbanBoard';
-import EditCard from './EditCard';
-import NewCard from './NewCard';
+import KanbanBoard from './components/KanbanBoard';
+import EditCard from './components/EditCard';
+import NewCard from './components/NewCard';
 
 let cardsList = [
   {

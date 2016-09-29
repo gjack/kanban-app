@@ -3,7 +3,7 @@ import KanbanBoard from './KanbanBoard';
 import 'whatwg-fetch';
 import update  from 'react-addons-update';
 import 'babel-polyfill';
-import { throttle } from './utils';
+import { throttle } from '../utils';
 
 const API_URL = 'http://kanbanapi.pro-react.com';
 const API_HEADERS = {
