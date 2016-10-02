@@ -4,6 +4,9 @@ import 'whatwg-fetch';
 import update  from 'react-addons-update';
 import 'babel-polyfill';
 import { throttle } from '../utils';
+import {Container} from 'flux/utils';
+import CardActionCreators from '../actions/CardActionCreators';
+import CardStore from '../stores/CardStore';
 
 const API_URL = 'http://kanbanapi.pro-react.com';
 const API_HEADERS = {
@@ -22,14 +25,7 @@ class KanbanBoardContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(API_URL + '/cards', {headers: API_HEADERS})
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState({cards: responseData});
-    })
-    .catch((error) => {
-      console.log('Error fetching and parsing data', error);
-    });
+    CardActionCreators.fetchCards();
   }
 
   addTask(cardId, taskName) {
@@ -254,4 +250,8 @@ class KanbanBoardContainer extends Component {
   }
 }
 
-export default KanbanBoardContainer;
+KanbanBoardContainer.getStores = () => ([CardStore]);
+KanbanBoardContainer.calculateState = (prevState) => ({
+  cards: CardStore.getState().cards
+});
+export default Container.create(KanbanBoardContainer);
