@@ -21,7 +21,6 @@ function collect(connect, monitor) {
 class List extends Component {
   render() {
     const { connectDropTarget } = this.props;
-
     var cards = this.props.cards.map((card) => {
       return <Card key={card.id}
                    id={card.id}
