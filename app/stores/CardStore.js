@@ -35,6 +35,15 @@ class CardStore extends ReduceStore {
       case constants.CREATE_CARD_ERROR:
         cardIndex = this.getCardIndex(action.payload.card.id);
         return update(this.getState(), { cards: {$splice: [[cardIndex, 1]]}});
+      case constants.TOGGLE_CARD_DETAILS:
+        cardIndex = this.getCardIndex(action.payload.cardId);
+        return update(this.getState(), {
+          cards: {
+            [cardIndex]: {
+              showDetails: { $apply: (currentValue) => (currentValue !== false) ? false : true }
+            }
+          }
+        });
       case constants.UPDATE_CARD:
         cardIndex = this.getCardIndex(action.payload.card.id);
         return update(this.getState(), { cards: {
@@ -82,7 +91,7 @@ class CardStore extends ReduceStore {
             tasks: {$push: [action.payload.task]}
           }
         }});
-      case constants.CREATE_TASK_SUCESS:
+      case constants.CREATE_TASK_SUCCESS:
         cardIndex = this.getCardIndex(action.payload.cardId);
         taskIndex = this.getState().cards[cardIndex].tasks.findIndex((task) => (task.id == action.payload.task.id));
         return update(this.getState(), { cards: {

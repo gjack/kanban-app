@@ -54,21 +54,14 @@ let collectDrop = (connect, monitor) => {
 }
 
 class Card extends Component {
-  constructor() {
-    super(...arguments);
-    this.state = {
-      showDetails: false
-    };
-  }
-
   toggleDetails() {
-    this.setState({showDetails: !this.state.showDetails});
+    CardActionCreators.toggleCardDetails(this.props.id);
   }
 
   render() {
     const { connectDragSource, connectDropTarget } = this.props;
     let cardDetails;
-    if (this.state.showDetails) {
+    if (this.props.showDetails !== false) {
       cardDetails = (
         <div className="card__details">
           <span dangerouslySetInnerHTML={{__html:marked(this.props.description)}} />
@@ -95,7 +88,7 @@ class Card extends Component {
       <div className="card">
         <div style={sideColor} />
         <div className="card__edit"><Link to={'/edit/' + this.props.id}>&#9998;</Link></div>
-        <div className={this.state.showDetails ? "card__title card__title--is-open" : "card__title"} onClick={this.toggleDetails.bind(this)}>{this.props.title}</div>
+        <div className={this.props.showDetails !== false ? "card__title card__title--is-open" : "card__title"} onClick={this.toggleDetails.bind(this)}>{this.props.title}</div>
         <ReactCSSTransitionGroup
           transitionName="toggle"
           transitionEnterTimeout={250}
@@ -114,7 +107,7 @@ Card.propTypes = {
   description: PropTypes.string,
   color: PropTypes.string,
   tasks: PropTypes.arrayOf(PropTypes.object),
-  taskCallbacks: PropTypes.object,
+  showDetails: PropTypes.bool,
   status: PropTypes.string,
   connectDragSource: PropTypes.func.isRequired,
   connectDropTarget: PropTypes.func.isRequired,

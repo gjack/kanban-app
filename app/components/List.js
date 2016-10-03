@@ -28,6 +28,7 @@ class List extends Component {
                    description={card.description}
                    color={card.color}
                    tasks={card.tasks}
+                   showDetails={card.showDetails}
               />
     });
 

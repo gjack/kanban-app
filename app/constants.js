@@ -21,7 +21,7 @@ export default {
   PERSIST_CARD_DRAG_ERROR: 'persist card drag error',
 
   CREATE_TASK: 'create task',
-  CREATE_TASK_SUCESS: 'create task success',
+  CREATE_TASK_SUCCESS: 'create task success',
   CREATE_TASK_ERROR: 'create task error',
 
   DELETE_TASK: 'delete task',
@@ -31,4 +31,9 @@ export default {
   TOGGLE_TASK: 'toggle task',
   TOGGLE_TASK_SUCCESS: 'toggle task success',
   TOGGLE_TASK_ERROR: 'toggle task error',
+
+  TOGGLE_CARD_DETAILS: 'toggle card details',
+
+  CREATE_DRAFT: 'create draft',
+  UPDATE_DRAFT: 'update draft',
 };
