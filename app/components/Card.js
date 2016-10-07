@@ -7,6 +7,7 @@ import { DragSource, DropTarget } from 'react-dnd';
 import constants from '../constants';
 import { Link } from 'react-router';
 import CardActionCreators from '../actions/CardActionCreators';
+import shallowCompare from 'react-addons-shallow-compare';
 
 let titlePropType = (props, propName, componentName) => {
   if(props[propName]) {
@@ -56,6 +57,10 @@ let collectDrop = (connect, monitor) => {
 class Card extends Component {
   toggleDetails() {
     CardActionCreators.toggleCardDetails(this.props.id);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   render() {
